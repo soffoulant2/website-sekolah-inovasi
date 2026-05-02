@@ -1,0 +1,55 @@
+/* Base Styles */
+body {
+    background-color: #303446;
+    color: white;
+    font-family: sans-serif;
+}
+
+.main-nav {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Sits Main and Program side-by-side */
+    gap: 20px;
+}
+
+.has-dropdown {
+    position: relative; /* Acts as an anchor for the dropdown position */
+}
+
+.has-dropdown a {
+    color: #8caaee;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+/* --- The Dropdown Magic --- */
+
+.dropdown {
+    display: none;        /* 1. Hide it by default */
+    position: absolute;   /* 2. Make it float below the parent */
+    top: 100%;            /* 3. Position exactly at the bottom of the parent */
+    left: 0;
+    background-color: #232634; /* Slightly darker than body for depth */
+    list-style: none;
+    padding: 10px;
+    min-width: 120px;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+}
+
+.dropdown li a {
+    display: block;
+    color: white;
+    padding: 5px 10px;
+}
+
+/* 4. Show the dropdown when hovering over the parent 'li' */
+.has-dropdown:hover .dropdown {
+    display: block;
+}
+
+/* Hover effect for items inside the dropdown */
+.dropdown li a:hover {
+    background-color: #414559;
+}
