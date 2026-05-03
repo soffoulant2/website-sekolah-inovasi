@@ -39,6 +39,7 @@ h1, p {
 
 .dropdown li a {
     color: white;
+    display: block;
     padding: 5px 10px;
 }
 
