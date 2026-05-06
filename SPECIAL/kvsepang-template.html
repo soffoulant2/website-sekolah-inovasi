@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kolej Vokasional Sepang - [Cawangan Anda]</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malay:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kv-blue: #003d7a;
+    --kv-blue-mid: #005baa;
+    --kv-blue-light: #1a75c4;
+    --kv-gold: #c9a42a;
+    --kv-gold-light: #f0c53a;
+    --kv-red: #c0272d;
+    --kv-gray: #f4f5f7;
+    --kv-text: #1a1a2e;
+    --kv-text-muted: #5a6272;
+    --kv-white: #ffffff;
+    --kv-border: #dde1ea;
+    --nav-h: 64px;
+    --topbar-h: 36px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', 'Noto Sans Malay', sans-serif;
+    color: var(--kv-text);
+    background: var(--kv-white);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--kv-blue);
+    height: var(--topbar-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 1.5rem; }
+  .topbar-left span { display: flex; align-items: center; gap: 5px; }
+  .topbar-right { display: flex; align-items: center; gap: 1rem; }
+  .topbar-right a {
+    color: rgba(255,255,255,0.75);
+    padding: 3px 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+    font-size: 11px;
+    transition: all 0.2s;
+  }
+  .topbar-right a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--kv-white);
+    border-bottom: 3px solid var(--kv-gold);
+    padding: 14px 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .header-logo {
+    width: 72px;
+    height: 72px;
+    background: var(--kv-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .header-logo svg { width: 48px; height: 48px; }
+  .header-title h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--kv-blue);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .header-title p {
+    font-size: 13px;
+    color: var(--kv-text-muted);
+    margin-top: 3px;
+  }
+  .header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .header-badge {
+    background: var(--kv-blue);
+    color: white;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .kpm-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .kpm-logo span {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--kv-blue);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── NAV ── */
+  .main-nav {
+    background: var(--kv-blue-mid);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-item > a, .nav-item > button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 18px;
+    height: var(--nav-h);
+    color: rgba(255,255,255,0.9);
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-item > a:hover,
+  .nav-item > button:hover,
+  .nav-item.active > a,
+  .nav-item.active > button {
+    background: var(--kv-blue);
+    color: var(--kv-gold-light);
+  }
+  .nav-item .chevron {
+    font-size: 10px;
+    opacity: 0.7;
+    transition: transform 0.2s;
+  }
+  .nav-item:hover .chevron { transform: rotate(180deg); }
+
+  /* dropdown */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    min-width: 220px;
+    background: var(--kv-white);
+    border: 1px solid var(--kv-border);
+    border-top: 3px solid var(--kv-gold);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    z-index: 200;
+  }
+  .nav-item:hover .dropdown { display: block; }
+  .dropdown a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    color: var(--kv-text);
+    border-bottom: 1px solid var(--kv-border);
+    transition: background 0.15s, color 0.15s;
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover { background: var(--kv-blue); color: white; padding-left: 24px; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #001e3c 0%, #003d7a 50%, #005baa 100%);
+  }
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%);
+    background-size: 30px 30px;
+  }
+  .hero-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--kv-gold) 0%, var(--kv-gold-light) 50%, var(--kv-gold) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,164,42,0.2);
+    border: 1px solid var(--kv-gold);
+    color: var(--kv-gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    width: fit-content;
+    text-transform: uppercase;
+  }
+  .hero h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    max-width: 680px;
+  }
+  .hero h2 em {
+    font-style: normal;
+    color: var(--kv-gold-light);
+  }
+  .hero p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--kv-gold);
+    color: var(--kv-blue);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 11px 24px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.1s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary:hover { background: var(--kv-gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* slide indicators */
+  .hero-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+  }
+  .hero-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, width 0.2s;
+  }
+  .hero-dot.active {
+    background: var(--kv-gold);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* ── ANNOUNCEMENT TICKER ── */
+  .ticker {
+    background: var(--kv-red);
+    color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    height: 38px;
+  }
+  .ticker-label {
+    background: #8b0000;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    gap: 6px;
+  }
+  .ticker-track {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 3rem;
+    white-space: nowrap;
+    animation: ticker-scroll 30s linear infinite;
+    font-size: 13px;
+    padding: 0 1rem;
+  }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── MAIN CONTENT AREA ── */
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .section-heading h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--kv-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--kv-gold) 0%, transparent 100%);
+  }
+  .section-heading .more-link {
+    font-size: 12px;
+    color: var(--kv-blue-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .section-heading .more-link:hover { color: var(--kv-gold); }
+
+  /* ── NEWS LIST ── */
+  .news-list { display: flex; flex-direction: column; gap: 0; }
+  .news-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--kv-border);
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .news-item:hover { background: var(--kv-gray); padding-left: 8px; margin: 0 -8px; padding-right: 8px; border-radius: 4px; }
+  .news-date {
+    flex-shrink: 0;
+    width: 52px;
+    text-align: center;
+    background: var(--kv-blue);
+    color: white;
+    border-radius: 4px;
+    padding: 6px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .news-date .day { font-size: 20px; font-weight: 700; display: block; line-height: 1; }
+  .news-body {}
+  .news-body h4 { font-size: 14px; font-weight: 600; color: var(--kv-text); margin-bottom: 4px; line-height: 1.4; }
+  .news-body p { font-size: 12px; color: var(--kv-text-muted); }
+  .news-cat {
+    display: inline-block;
+    background: var(--kv-gray);
+    color: var(--kv-blue);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  /* ── QUICK LINKS PANEL ── */
+  .quick-links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .quick-link-card {
+    background: var(--kv-blue);
+    color: white;
+    border-radius: 6px;
+    padding: 14px 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .quick-link-card:hover { background: var(--kv-blue-light); transform: translateY(-2px); }
+  .quick-link-card .icon {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .quick-link-card.gold { background: var(--kv-gold); color: var(--kv-blue); }
+  .quick-link-card.gold:hover { background: var(--kv-gold-light); }
+
+  /* ── SIDEBAR WIDGET ── */
+  .sidebar-widget {
+    background: var(--kv-white);
+    border: 1px solid var(--kv-border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .widget-header {
+    background: var(--kv-blue);
+    color: white;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .widget-body { padding: 16px; }
+  .widget-body p { font-size: 13px; color: var(--kv-text-muted); line-height: 1.6; margin-bottom: 10px; }
+  .widget-body strong { color: var(--kv-text); }
+
+  /* contact list */
+  .contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .contact-row { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; }
+  .contact-icon { color: var(--kv-gold); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .contact-row span { color: var(--kv-text-muted); line-height: 1.4; }
+  .contact-row strong { display: block; color: var(--kv-text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+
+  /* social icons */
+  .social-row { display: flex; gap: 10px; margin-top: 12px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--kv-blue);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .social-btn:hover { background: var(--kv-gold); color: var(--kv-blue); }
+
+  /* ── PROGRAMMES SECTION ── */
+  .programmes-section {
+    background: var(--kv-gray);
+    padding: 3rem 0;
+  }
+  .programmes-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .programme-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 2px solid var(--kv-border); }
+  .tab-btn {
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--kv-text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .tab-btn.active { color: var(--kv-blue); border-bottom-color: var(--kv-gold); }
+  .tab-btn:hover { color: var(--kv-blue); }
+
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .prog-card {
+    background: white;
+    border: 1px solid var(--kv-border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .prog-card:hover { box-shadow: 0 8px 24px rgba(0,61,122,0.12); transform: translateY(-3px); }
+  .prog-card-top {
+    height: 80px;
+    background: var(--kv-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
+  .prog-card-body { padding: 14px; }
+  .prog-card-body h4 { font-size: 13px; font-weight: 700; color: var(--kv-blue); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .prog-card-body p { font-size: 11px; color: var(--kv-text-muted); }
+  .prog-level {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .level-svm { background: #e3f0ff; color: var(--kv-blue); }
+  .level-dvm { background: #fff3d0; color: #7a5800; }
+
+  /* ── STATISTICS ── */
+  .stats-bar {
+    background: var(--kv-blue);
+    padding: 2rem 0;
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    text-align: center;
+  }
+  .stat-item { color: white; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--kv-gold-light);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat-divider { border-left: 1px solid rgba(255,255,255,0.15); }
+
+  /* ── GALLERY STRIP ── */
+  .gallery-section { padding: 3rem 0; background: white; }
+  .gallery-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .gallery-item {
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--kv-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--kv-text-muted);
+    border: 1px dashed var(--kv-border);
+    cursor: pointer;
+    transition: filter 0.2s;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gallery-item:hover { filter: brightness(0.9); }
+  .gallery-item .placeholder-icon { font-size: 28px; opacity: 0.4; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #001428;
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 0 0;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .footer-brand {}
+  .footer-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .footer-logo-circle {
+    width: 48px; height: 48px;
+    background: var(--kv-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .footer-brand h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; }
+  .footer-col h5 {
+    color: var(--kv-gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+  }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-col ul li a::before {
+    content: '›';
+    color: var(--kv-gold);
+    font-size: 16px;
+  }
+  .footer-col ul li a:hover { color: white; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.35); }
+  .footer-bottom a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .footer-bottom a:hover { color: var(--kv-gold-light); }
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* ── MOBILE HAMBURGER ── */
+  .hamburger { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .main-content { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero h2 { font-size: 36px; }
+  }
+  @media (max-width: 640px) {
+    .topbar { display: none; }
+    .site-header { padding: 10px 1rem; }
+    .header-title h1 { font-size: 18px; }
+    .header-right { display: none; }
+    .nav-inner { overflow-x: auto; }
+    .nav-item > a, .nav-item > button { padding: 0 12px; font-size: 12px; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .quick-links-grid { grid-template-columns: repeat(2, 1fr); }
+    .prog-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { height: 360px; }
+    .hero h2 { font-size: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--kv-blue) 0%, var(--kv-blue-light) 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--kv-gold-light); }
+  .highlight-box p { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+  .highlight-box .deadline {
+    margin-top: 10px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px; height: 44px;
+    background: var(--kv-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .scroll-top.visible { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { background: var(--kv-gold); color: var(--kv-blue); }
+
+  /* placeholder fill color utility */
+  .ph-blue { background: var(--kv-blue) !important; }
+  .ph-gold { background: var(--kv-gold) !important; }
+
+  /* PLACEHOLDER EDIT CALLOUT */
+  .edit-note {
+    display: inline-block;
+    background: #fff3cd;
+    border: 1px dashed #c9a42a;
+    border-radius: 3px;
+    padding: 0 6px;
+    font-size: 11px;
+    color: #7a5800;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span>📅 <span class="edit-note">Tarikh Dikemas Kini: [Tarikh]</span></span>
+    <span>🌡 Selamat Datang ke Laman Web Rasmi</span>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Peta Laman</a>
+    <a href="#">Hubungi Kami</a>
+    <a href="#" style="background:rgba(201,164,42,0.25); border-color:var(--kv-gold); color:var(--kv-gold-light); font-weight:700;">🔒 MyKV Login</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-logo">
+    <!-- Replace with actual KV logo -->
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="22" stroke="#c9a42a" stroke-width="2"/>
+      <text x="24" y="20" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700">KOLEJ</text>
+      <text x="24" y="30" text-anchor="middle" fill="#c9a42a" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700">VOKASIONAL</text>
+      <text x="24" y="39" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="7">SEPANG</text>
+    </svg>
+  </div>
+  <div class="header-title">
+    <h1>Kolej Vokasional Sepang</h1>
+    <p><span class="edit-note">[Nama Penuh Cawangan Anda]</span> · Kementerian Pendidikan Malaysia</p>
+  </div>
+  <div class="header-right">
+    <div class="kpm-logo">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="4" fill="#003d7a"/>
+        <text x="20" y="15" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700">KPM</text>
+        <text x="20" y="26" text-anchor="middle" fill="#c9a42a" font-family="sans-serif" font-size="6">PENDIDIKAN</text>
+        <text x="20" y="34" text-anchor="middle" fill="#c9a42a" font-family="sans-serif" font-size="6">MALAYSIA</text>
+      </svg>
+    </div>
+    <div class="header-badge">BPLTV</div>
+  </div>
+</header>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <ul class="nav-inner">
+    <li class="nav-item active">
+      <a href="#">Utama</a>
+    </li>
+    <li class="nav-item">
+      <button>Profil Kolej <span class="chevron">▾</span></button>
+      <ul class="dropdown">
+        <li><a href="#">Latar Belakang</a></li>
+        <li><a href="#">Visi & Misi</a></li>
+        <li><a href="#">Falsafah Pendidikan</a></li>
+        <li><a href="#">Carta Organisasi</a></li>
+        <li><a href="#">Pengurusan</a></li>
+        <li><a href="#">Piagam Pelanggan</a></li>
+        <li><a href="#">Lokasi & Peta</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <button>Akademik <span class="chevron">▾</span></button>
+      <ul class="dropdown">
+        <li><a href="#">Program Ditawarkan</a></li>
+        <li><a href="#">Sijil Vokasional Malaysia (SVM)</a></li>
+        <li><a href="#">Diploma Vokasional Malaysia (DVM)</a></li>
+        <li><a href="#">Jadual Waktu</a></li>
+        <li><a href="#">Takwim Akademik</a></li>
+        <li><a href="#">Keputusan Peperiksaan</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <button>Pelajar <span class="chevron">▾</span></button>
+      <ul class="dropdown">
+        <li><a href="#">Pendaftaran & Kemasukan</a></li>
+        <li><a href="#">Yuran & Biasiswa</a></li>
+        <li><a href="#">Asrama</a></li>
+        <li><a href="#">Unit Kaunseling</a></li>
+        <li><a href="#">Disiplin Pelajar</a></li>
+        <li><a href="#">Biro Tatanegara</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <button>Kokurikulum <span class="chevron">▾</span></button>
+      <ul class="dropdown">
+        <li><a href="#">Kelab & Persatuan</a></li>
+        <li><a href="#">Sukan & Permainan</a></li>
+        <li><a href="#">Badan Beruniform</a></li>
+        <li><a href="#">Aktiviti Kokurikulum</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <button>Pengurusan <span class="chevron">▾</span></button>
+      <ul class="dropdown">
+        <li><a href="#">Pentadbiran Am</a></li>
+        <li><a href="#">Kewangan</a></li>
+        <li><a href="#">ICT & Perpustakaan</a></li>
+        <li><a href="#">Jaminan Kualiti</a></li>
+        <li><a href="#">Keselamatan</a></li>
+        <li><a href="#">Kemudahan & Infrastruktur</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <button>Media <span class="chevron">▾</span></button>
+      <ul class="dropdown">
+        <li><a href="#">Berita & Pengumuman</a></li>
+        <li><a href="#">Galeri Foto</a></li>
+        <li><a href="#">Video</a></li>
+        <li><a href="#">Penerbitan</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#">Hubungi Kami</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO / BANNER -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📚 Kolej Vokasional · Kementerian Pendidikan Malaysia</div>
+    <h2>Kemahiran Untuk<br><em>Kehidupan</em></h2>
+    <p><span class="edit-note">[Masukkan tagline atau penerangan ringkas kolej anda di sini. Contoh: "Melahirkan tenaga mahir yang kompeten dan holistik untuk industri negara."]</span></p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('programmes').scrollIntoView({behavior:'smooth'})">Program Ditawarkan</button>
+      <button class="btn-outline" onclick="document.getElementById('contact-widget').scrollIntoView({behavior:'smooth'})">Hubungi Kami</button>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active"></button>
+    <button class="hero-dot"></button>
+    <button class="hero-dot"></button>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENT TICKER -->
+<div class="ticker">
+  <div class="ticker-label">📢 Terkini</div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="ticker-inner">
+      <span>⬥ [Masukkan pengumuman terkini di sini] &nbsp;&nbsp;&nbsp; ⬥ [Contoh: Pendaftaran semester baharu dibuka pada 1 Julai 2025] &nbsp;&nbsp;&nbsp; ⬥ [Contoh: Tahniah kepada pelajar yang memenangi pertandingan kemahiran kebangsaan!] &nbsp;&nbsp;&nbsp; ⬥ [Masukkan pengumuman terkini di sini] &nbsp;&nbsp;&nbsp; ⬥ [Contoh: Pendaftaran semester baharu dibuka pada 1 Julai 2025] &nbsp;&nbsp;&nbsp; ⬥ [Contoh: Tahniah kepada pelajar yang memenangi pertandingan kemahiran kebangsaan!]</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+  <!-- LEFT: NEWS + PROGRAMMES -->
+  <div>
+    <!-- Quick Links -->
+    <div class="quick-links-grid" style="margin-bottom:2rem;">
+      <div class="quick-link-card gold">
+        <div class="icon">📋</div>
+        Permohonan Masuk
+      </div>
+      <div class="quick-link-card">
+        <div class="icon">📅</div>
+        Takwim Akademik
+      </div>
+      <div class="quick-link-card">
+        <div class="icon">🎓</div>
+        Program SVM/DVM
+      </div>
+      <div class="quick-link-card">
+        <div class="icon">📞</div>
+        Hubungi Kami
+      </div>
+    </div>
+
+    <!-- News -->
+    <div class="section-heading">
+      <h3>Berita & Aktiviti</h3>
+      <a href="#" class="more-link">Lihat Semua →</a>
+    </div>
+    <div class="news-list">
+      <!-- NEWS ITEM 1 -->
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">01</span>
+          <span>JAN</span>
+          <span>2025</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat">Pengumuman</span>
+          <h4>[Tajuk Berita / Aktiviti — Masukkan tajuk yang menarik di sini]</h4>
+          <p>[Penerangan ringkas aktiviti atau berita. Ini boleh diisi dengan maklumat acara, pencapaian pelajar, atau program terbaru kolej.]</p>
+        </div>
+      </div>
+      <!-- NEWS ITEM 2 -->
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">15</span>
+          <span>JAN</span>
+          <span>2025</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat">Program</span>
+          <h4>[Tajuk Berita / Program Kedua]</h4>
+          <p>[Penerangan ringkas. Contoh: Kolej Vokasional Sepang mengadakan Program Kemahiran Industri bersama syarikat tempatan...]</p>
+        </div>
+      </div>
+      <!-- NEWS ITEM 3 -->
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">28</span>
+          <span>FEB</span>
+          <span>2025</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat">Pencapaian</span>
+          <h4>[Tajuk Pencapaian Pelajar / Kolej]</h4>
+          <p>[Masukkan pencapaian terkini kolej atau pelajar di sini. Ini memberi imej positif kepada kolej anda.]</p>
+        </div>
+      </div>
+      <!-- NEWS ITEM 4 -->
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">10</span>
+          <span>MAC</span>
+          <span>2025</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat">Kokurikulum</span>
+          <h4>[Tajuk Aktiviti Kokurikulum]</h4>
+          <p>[Penerangan aktiviti kokurikulum, sukan, atau persatuan pelajar.]</p>
+        </div>
+      </div>
+      <!-- NEWS ITEM 5 -->
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">22</span>
+          <span>MAC</span>
+          <span>2025</span>
+        </div>
+        <div class="news-body">
+          <span class="news-cat">Akademik</span>
+          <h4>[Tajuk Berita Akademik — Peperiksaan / Keputusan / dll]</h4>
+          <p>[Maklumat berkaitan peperiksaan, keputusan, atau program akademik.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: SIDEBAR -->
+  <div>
+    <!-- Admission CTA -->
+    <div class="highlight-box">
+      <h4>🎓 Permohonan Terbuka!</h4>
+      <p>Ambilan pelajar baharu untuk sesi akademik <span class="edit-note">[Tahun]</span> kini dibuka. Mohon sekarang melalui portal rasmi KPM.</p>
+      <div class="deadline">
+        ⏰ Tarikh tutup: <span class="edit-note">[DD/MM/YYYY]</span>
+      </div>
+      <button class="btn-primary" style="margin-top:12px; width:100%; justify-content:center; display:flex;" onclick="window.open('https://spskt4.moe.gov.my','_blank')">
+        Mohon Sekarang
+      </button>
+    </div>
+
+    <!-- Contact Widget -->
+    <div class="sidebar-widget" id="contact-widget">
+      <div class="widget-header">📍 Maklumat Hubungan</div>
+      <div class="widget-body">
+        <div class="contact-list">
+          <div class="contact-row">
+            <span class="contact-icon">🏫</span>
+            <span><strong>Alamat</strong><span class="edit-note">[No., Jalan, Kawasan, Poskod, Sepang, Selangor]</span></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">📞</span>
+            <span><strong>Telefon</strong><span class="edit-note">[03-XXXX XXXX]</span></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">📠</span>
+            <span><strong>Faks</strong><span class="edit-note">[03-XXXX XXXX]</span></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">✉️</span>
+            <span><strong>E-mel</strong><span class="edit-note">[xxx@moe.edu.my]</span></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">🕘</span>
+            <span><strong>Waktu Pejabat</strong>Isnin – Jumaat: 8:00 pagi – 5:00 petang</span>
+          </div>
+        </div>
+        <div class="social-row">
+          <button class="social-btn" title="Facebook" onclick="window.open('#','_blank')">f</button>
+          <button class="social-btn" title="Instagram" onclick="window.open('#','_blank')">📷</button>
+          <button class="social-btn" title="YouTube" onclick="window.open('#','_blank')">▶</button>
+          <button class="social-btn" title="Twitter/X" onclick="window.open('#','_blank')">𝕏</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pautan Berguna -->
+    <div class="sidebar-widget">
+      <div class="widget-header">🔗 Pautan Berguna</div>
+      <div class="widget-body" style="padding:8px 0;">
+        <ul>
+          <li style="border-bottom:1px solid var(--kv-border);">
+            <a href="https://bpltv.moe.gov.my" target="_blank" style="display:block; padding:10px 16px; font-size:13px; color:var(--kv-blue); transition:background 0.15s;" onmouseover="this.style.background='var(--kv-gray)'" onmouseout="this.style.background=''">🔹 BPLTV – Portal Utama</a>
+          </li>
+          <li style="border-bottom:1px solid var(--kv-border);">
+            <a href="https://www.moe.gov.my" target="_blank" style="display:block; padding:10px 16px; font-size:13px; color:var(--kv-blue); transition:background 0.15s;" onmouseover="this.style.background='var(--kv-gray)'" onmouseout="this.style.background=''">🔹 Kementerian Pendidikan Malaysia</a>
+          </li>
+          <li style="border-bottom:1px solid var(--kv-border);">
+            <a href="https://spskt4.moe.gov.my" target="_blank" style="display:block; padding:10px 16px; font-size:13px; color:var(--kv-blue); transition:background 0.15s;" onmouseover="this.style.background='var(--kv-gray)'" onmouseout="this.style.background=''">🔹 Permohonan Kemasukan KV</a>
+          </li>
+          <li style="border-bottom:1px solid var(--kv-border);">
+            <a href="https://www.mqa.gov.my" target="_blank" style="display:block; padding:10px 16px; font-size:13px; color:var(--kv-blue); transition:background 0.15s;" onmouseover="this.style.background='var(--kv-gray)'" onmouseout="this.style.background=''">🔹 MQA – Agensi Kelayakan Malaysia</a>
+          </li>
+          <li>
+            <a href="https://www.jpk.gov.my" target="_blank" style="display:block; padding:10px 16px; font-size:13px; color:var(--kv-blue); transition:background 0.15s;" onmouseover="this.style.background='var(--kv-gray)'" onmouseout="this.style.background=''">🔹 Jabatan Pembangunan Kemahiran</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Takwim -->
+    <div class="sidebar-widget">
+      <div class="widget-header">📆 Takwim Terdekat</div>
+      <div class="widget-body" style="padding:8px 0;">
+        <ul>
+          <li style="padding:10px 16px; border-bottom:1px solid var(--kv-border); font-size:13px;">
+            <div style="color:var(--kv-gold); font-weight:700; font-size:11px; margin-bottom:2px;"><span class="edit-note">[DD MMM]</span></div>
+            <div style="color:var(--kv-text);">[Nama Acara / Program]</div>
+          </li>
+          <li style="padding:10px 16px; border-bottom:1px solid var(--kv-border); font-size:13px;">
+            <div style="color:var(--kv-gold); font-weight:700; font-size:11px; margin-bottom:2px;"><span class="edit-note">[DD MMM]</span></div>
+            <div style="color:var(--kv-text);">[Nama Acara / Program]</div>
+          </li>
+          <li style="padding:10px 16px; font-size:13px;">
+            <div style="color:var(--kv-gold); font-weight:700; font-size:11px; margin-bottom:2px;"><span class="edit-note">[DD MMM]</span></div>
+            <div style="color:var(--kv-text);">[Nama Acara / Program]</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATISTICS BAR -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num"><span class="edit-note" style="font-size:48px; font-weight:700; color:#f0c53a;">XXX</span></span>
+      <div class="stat-label">Jumlah Pelajar</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <span class="stat-num"><span class="edit-note" style="font-size:48px; font-weight:700; color:#f0c53a;">XX</span></span>
+      <div class="stat-label">Staf Akademik</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <span class="stat-num"><span class="edit-note" style="font-size:48px; font-weight:700; color:#f0c53a;">7</span></span>
+      <div class="stat-label">Program Ditawarkan</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <span class="stat-num"><span class="edit-note" style="font-size:48px; font-weight:700; color:#f0c53a;">XX</span></span>
+      <div class="stat-label">Tahun Beroperasi</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES SECTION -->
+<section class="programmes-section" id="programmes">
+  <div class="programmes-inner">
+    <div class="section-heading">
+      <h3>Program Ditawarkan</h3>
+      <a href="#" class="more-link">Maklumat Lanjut →</a>
+    </div>
+    <div class="programme-tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'svm')">Sijil Vokasional Malaysia (SVM)</button>
+      <button class="tab-btn" onclick="switchTab(this,'dvm')">Diploma Vokasional Malaysia (DVM)</button>
+    </div>
+
+    <!-- SVM TAB -->
+    <div id="tab-svm" class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#003d7a;">⚡</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>Teknologi Elektrik</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#005baa;">💻</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>Teknologi Elektronik</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#004080;">🖥️</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>[Program 3 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#003060;">🔧</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>[Program 4 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#002050;">🏗️</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>[Program 5 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#001840;">🎨</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>[Program 6 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#011030;">📊</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-svm">SVM</span>
+          <h4>[Program 7 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DVM TAB -->
+    <div id="tab-dvm" class="prog-grid" style="display:none;">
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#7a5800;">⚡</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-dvm">DVM</span>
+          <h4>Diploma Teknologi Elektrik</h4>
+          <p>[Penerangan ringkas program diploma]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#8b6500;">💻</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-dvm">DVM</span>
+          <h4>Diploma Teknologi Elektronik</h4>
+          <p>[Penerangan ringkas program diploma]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#6b4e00;">🖥️</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-dvm">DVM</span>
+          <h4>[Diploma 3 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:#5a4200;">🔧</div>
+        <div class="prog-card-body">
+          <span class="prog-level level-dvm">DVM</span>
+          <h4>[Diploma 4 — Edit]</h4>
+          <p>[Penerangan ringkas program]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <div class="section-heading">
+      <h3>Galeri Foto</h3>
+      <a href="#" class="more-link">Lihat Galeri Penuh →</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="placeholder-icon">🏫</div>
+        <span>Foto Kolej</span>
+      </div>
+      <div class="gallery-item">
+        <div class="placeholder-icon">🎓</div>
+        <span>Majlis Graduasi</span>
+      </div>
+      <div class="gallery-item">
+        <div class="placeholder-icon">🏆</div>
+        <span>Pencapaian Pelajar</span>
+      </div>
+      <div class="gallery-item">
+        <div class="placeholder-icon">⚽</div>
+        <span>Aktiviti Sukan</span>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:1rem; font-size:13px; color:var(--kv-text-muted);">
+      <span class="edit-note">Gantikan kotak di atas dengan foto sebenar kolej anda menggunakan tag &lt;img&gt;</span>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo-row">
+        <div class="footer-logo-circle">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <circle cx="15" cy="15" r="13" stroke="#c9a42a" stroke-width="1.5"/>
+            <text x="15" y="11" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="6" font-weight="700">KOLEJ</text>
+            <text x="15" y="18" text-anchor="middle" fill="#c9a42a" font-family="Barlow Condensed,sans-serif" font-size="5.5" font-weight="700">VOKASIONAL</text>
+            <text x="15" y="24" text-anchor="middle" fill="white" font-family="Barlow Condensed,sans-serif" font-size="4.5">SEPANG</text>
+          </svg>
+        </div>
+        <h4>Kolej Vokasional<br>Sepang</h4>
+      </div>
+      <p>Kementerian Pendidikan Malaysia<br>Bahagian Pendidikan dan Latihan Teknikal Vokasional (BPLTV)<br><br>
+        <span class="edit-note">[Masukkan alamat penuh kolej anda di sini]</span><br>
+        Sepang, Selangor Darul Ehsan.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigasi</h5>
+      <ul>
+        <li><a href="#">Utama</a></li>
+        <li><a href="#">Profil Kolej</a></li>
+        <li><a href="#">Akademik</a></li>
+        <li><a href="#">Pelajar</a></li>
+        <li><a href="#">Kokurikulum</a></li>
+        <li><a href="#">Hubungi Kami</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Program</h5>
+      <ul>
+        <li><a href="#">SVM</a></li>
+        <li><a href="#">DVM</a></li>
+        <li><a href="#">Takwim Akademik</a></li>
+        <li><a href="#">Keputusan Peperiksaan</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Pautan Luar</h5>
+      <ul>
+        <li><a href="https://bpltv.moe.gov.my" target="_blank">BPLTV</a></li>
+        <li><a href="https://www.moe.gov.my" target="_blank">KPM</a></li>
+        <li><a href="https://spskt4.moe.gov.my" target="_blank">Permohonan KV</a></li>
+        <li><a href="https://www.mqa.gov.my" target="_blank">MQA</a></li>
+        <li><a href="https://www.jpk.gov.my" target="_blank">JPK</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.08); padding:1.5rem 2rem; max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <p style="font-size:12px; color:rgba(255,255,255,0.3);">© <span id="year"></span> Kolej Vokasional Sepang · Kementerian Pendidikan Malaysia. Hak Cipta Terpelihara.</p>
+    <div style="display:flex; gap:1.5rem;">
+      <a href="#" style="font-size:12px; color:rgba(255,255,255,0.4); transition:color 0.2s;" onmouseover="this.style.color='#f0c53a'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Dasar Privasi</a>
+      <a href="#" style="font-size:12px; color:rgba(255,255,255,0.4); transition:color 0.2s;" onmouseover="this.style.color='#f0c53a'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Penafian</a>
+      <a href="#" style="font-size:12px; color:rgba(255,255,255,0.4); transition:color 0.2s;" onmouseover="this.style.color='#f0c53a'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Peta Laman</a>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Ke Atas">↑</button>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // scroll top
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTop');
+    btn.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  // tab switch
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-svm').style.display = tab === 'svm' ? 'grid' : 'none';
+    document.getElementById('tab-dvm').style.display = tab === 'dvm' ? 'grid' : 'none';
+  }
+
+  // hero dot interaction (placeholder)
+  document.querySelectorAll('.hero-dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      document.querySelectorAll('.hero-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    });
+  });
+
+  // nav active on scroll (simple)
+  document.querySelectorAll('.nav-item > a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      a.parentElement.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

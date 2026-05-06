@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM-Bridge Forum | Goal-Driven Innovation</title>
+    <style>
+        :root {
+            --sdg-blue: #00689D;
+            --sdg-green: #4C9F38;
+            --sdg-orange: #FFB310;
+            --bg-light: #f4f7f6;
+            --text-dark: #1a202c;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-light); 
+            display: flex;
+            color: var(--text-dark);
+        }
+
+        /* SIDEBAR NAVIGATION */
+        aside {
+            width: 260px;
+            background: #fff;
+            height: 100vh;
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            padding: 20px;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--sdg-blue); margin-bottom: 40px; }
+
+        .nav-group h4 { font-size: 0.75rem; text-transform: uppercase; color: #718096; margin-bottom: 15px; }
+
+        .nav-item {
+            padding: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            display: block;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover { background: #edf2f7; color: var(--sdg-blue); }
+
+        /* MAIN FORUM AREA */
+        main {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 40px;
+        }
+
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-new {
+            background: var(--sdg-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* THREAD CARDS */
+        .thread-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 20px;
+            transition: transform 0.2s;
+        }
+
+        .thread-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        .vote-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 50px;
+        }
+
+        .thread-content { flex-grow: 1; }
+
+        .thread-meta { display: flex; gap: 15px; margin-top: 10px; font-size: 0.85rem; color: #718096; }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-sdg4 { background: #dbeafe; color: #1e40af; } /* Education */
+        .badge-sdg8 { background: #fee2e2; color: #991b1b; } /* Work */
+        .status-pill { border: 1px solid #cbd5e0; }
+
+        /* INDUSTRY VERIFIED TAG */
+        .verified { color: #38a169; font-weight: bold; font-size: 0.75rem; }
+
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="logo">STEM-Bridge</div>
+        <div class="nav-group">
+            <h4>Focus Goals</h4>
+            <a href="#" class="nav-item"># SDG 4 Education</a>
+            <a href="#" class="nav-item"># SDG 8 Decent Work</a>
+            <a href="#" class="nav-item"># SDG 9 Innovation</a>
+            <a href="#" class="nav-item"># SDG 13 Climate</a>
+        </div>
+        <div class="nav-group" style="margin-top: 30px;">
+            <h4>Community</h4>
+            <a href="#" class="nav-item">Industry Mentors</a>
+            <a href="#" class="nav-item">Bounties</a>
+            <a href="#" class="nav-item">Success Stories</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="forum-header">
+            <h1>Action Threads</h1>
+            <a href="#" class="btn-new">+ Start Project Thread</a>
+        </div>
+
+        <!-- Thread 1 -->
+        <div class="thread-card">
+            <div class="vote-box">
+                <span>▲</span>
+                <strong>42</strong>
+                <span>▼</span>
+            </div>
+            <div class="thread-content">
+                <span class="badge badge-sdg4">SDG 4: Quality Education</span>
+                <h3 style="margin: 8px 0;">Developing a CSS-only curriculum for low-bandwidth schools</h3>
+                <p>I'm looking for STEM educators to review my modular layout approach for rural areas.</p>
+                <div class="thread-meta">
+                    <span>Started by: <strong>WebLearner_01</strong></span>
+                    <span class="status-pill badge">Status: Ideation</span>
+                    <span>💬 12 replies</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thread 2 (Industry Sponsored) -->
+        <div class="thread-card" style="border-left: 5px solid var(--sdg-green);">
+            <div class="vote-box">
+                <span>▲</span>
+                <strong>128</strong>
+                <span>▼</span>
+            </div>
+            <div class="thread-content">
+                <span class="badge badge-sdg8">SDG 8: Decent Work</span>
+                <h3 style="margin: 8px 0;">[BOUNTY] Optimization of Carbon-Tracking Dashboard UI</h3>
+                <p>Industry Partner: <span class="verified">EcoTech Solutions ✓</span></p>
+                <p>Goal: Improve the data-vis performance. Top contributor gets a remote internship offer.</p>
+                <div class="thread-meta">
+                    <span>Target: STEM Students</span>
+                    <span class="status-pill badge" style="background: #e6fffa; color: #234e52;">Status: Active Bounty</span>
+                    <span>💬 89 replies</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thread 3 -->
+        <div class="thread-card">
+            <div class="vote-box">
+                <span>▲</span>
+                <strong>15</strong>
+                <span>▼</span>
+            </div>
+            <div class="thread-content">
+                <span class="badge" style="background: #fef3c7; color: #92400e;">SDG 9: Infrastructure</span>
+                <h3 style="margin: 8px 0;">Help needed: Debugging Flexbox overflow on IoT tracking app</h3>
+                <p>Having trouble with mobile responsiveness on the bridge-monitoring portal.</p>
+                <div class="thread-meta">
+                    <span>Started by: <strong>FutureEng_26</strong></span>
+                    <span class="status-pill badge">Status: Need Help</span>
+                    <span>💬 3 replies</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
